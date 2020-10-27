@@ -38,6 +38,7 @@ class ListNeighborsFragments : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val neighbors = NeighborRepository.getInstance().getNeighbours()
+        
         val adapter = ListNeighborsAdapter(neighbors)
         recyclerView.adapter = adapter
     }

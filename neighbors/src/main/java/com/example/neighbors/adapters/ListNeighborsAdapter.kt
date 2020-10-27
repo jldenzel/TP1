@@ -8,6 +8,8 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.neighbors.R
 import com.example.neighbors.models.Neighbor
 
@@ -25,6 +27,15 @@ class ListNeighborsAdapter(
         val neighbour: Neighbor = mNeighbours[position]
         // Display Neighbour Name
         holder.mNeighbourName.text = neighbour.name
+        val context = holder.itemView.context
+// Display Neighbour Avatar
+        Glide.with(context)
+            .load(neighbour.avatarUrl)
+            .apply(RequestOptions.circleCropTransform())
+            .placeholder(R.drawable.ic_baseline_person_24)
+            .error(R.drawable.ic_baseline_person_24)
+            .skipMemoryCache(false)
+            .into(holder.mNeighbourAvatar)
     }
 
     override fun getItemCount(): Int {
@@ -43,5 +54,7 @@ class ListNeighborsAdapter(
             mNeighbourName = view.findViewById(R.id.item_list_name)
             mDeleteButton = view.findViewById(R.id.item_list_delete_button)
         }
+
+
     }
 }
